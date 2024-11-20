@@ -1,7 +1,7 @@
 // src/app.js
 const express = require('express');
 const dotenv = require('dotenv');
-const traitRoutes = require('./routes/traitRoutes.js');  // 경로 수정
+const traitRoutes = require('./routes/traitRoutes.js');  
 
 // 환경 변수 로드
 dotenv.config();
