@@ -2,6 +2,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const traitRoutes = require('./routes/traitRoutes.js');  
+const postRoutes = require('./routes/postRoutes.js');  
 
 // 환경 변수 로드
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // 라우트 설정
 app.use('/api', traitRoutes); // /api 경로 하위에 traitRoutes 추가
+app.use('/post', postRoutes); // /post 경로 하위에 postRoutes 추가
 
 // 서버 실행
 app.listen(PORT, () => {

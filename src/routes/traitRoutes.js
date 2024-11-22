@@ -1,8 +1,5 @@
 const express = require('express');
-const { getAllTraits } = require('../controllers/traitController.js'); 
-const { getTraitsFromVanilla } = require('../controllers/traitController.js'); 
-const { getTraitsFromMode } = require('../controllers/traitController.js'); 
-const { getJobs } = require('../controllers/traitController.js');
+const { getAllTraits, getTraitsFromVanilla, getTraitsFromMode, getJobs } = require('../controllers/traitController.js'); 
 const router = express.Router();
 
 // 모든 traits를 가져오는 경로 설정
