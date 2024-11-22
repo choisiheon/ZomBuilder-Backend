@@ -1,10 +1,13 @@
 const Trait = require('../models/traitModel.js');
 
+
+
 const getAllTraits = async (req, res) => {
   try {
     const traits = await Trait.getAll();
     res.json({ success: true, data: traits });
   } catch (error) {
+
     console.error('Error fetching traits:', error); // 로그에 에러 출력
     res.status(500).json({ success: false, message: 'Error fetching traits', error: error.message });
   }
@@ -92,3 +95,4 @@ const getTraitsFromMode = async (req, res) => {
 
 
 module.exports = { getAllTraits, getTraitsFromVanilla, getTraitsFromMode };
+

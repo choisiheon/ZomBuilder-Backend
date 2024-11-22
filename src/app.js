@@ -19,3 +19,4 @@ app.use('/api', traitRoutes); // /api 경로 하위에 traitRoutes 추가
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+

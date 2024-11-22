@@ -14,3 +14,4 @@ router.get('/vTraits', getTraitsFromVanilla);
 router.get('/mTraits', getTraitsFromMode);
 
 module.exports = router;
+
