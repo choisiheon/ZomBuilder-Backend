@@ -1,7 +1,5 @@
 const express = require('express');
-const { getAllTraits } = require('../controllers/traitController.js'); 
-const { getTraitsFromVanilla } = require('../controllers/traitController.js'); 
-const { getTraitsFromMode } = require('../controllers/traitController.js'); 
+const { getAllTraits, getTraitsFromVanilla, getTraitsFromMode, getJobs } = require('../controllers/traitController.js'); 
 const router = express.Router();
 
 // 모든 traits를 가져오는 경로 설정
@@ -12,6 +10,11 @@ router.get('/vTraits', getTraitsFromVanilla);
 
 // 모드의 traits를 가져오는 경로 설정
 router.get('/mTraits', getTraitsFromMode);
+
+// 바닐라모드 직업을 불러오는 경로 설정
+router.get('/jobs', getJobs);
+
+
 
 module.exports = router;
 

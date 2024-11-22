@@ -58,6 +58,25 @@ const Trait = {
       throw error;
     }
   },
+  getJobs: async (mode) => {
+    try {
+      if (!mode) {
+        throw new Error('Mode condition is required');
+      }
+
+      const query = `
+        SELECT * 
+        FROM job
+        WHERE \`mode\` = ?
+      `;
+      
+      const [rows] = await pool.query(query, [mode]);
+      return rows;
+    } catch (error) {
+      console.error('Error fetching data from database:', error);
+      throw error;
+    }
+  },
 };
 
 module.exports = Trait;

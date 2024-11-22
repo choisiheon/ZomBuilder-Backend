@@ -9,7 +9,10 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD, // 환경변수로 DB 비밀번호 지정
   database: process.env.DB_NAME, // 환경변수로 DB 이름 지정
   port: process.env.DB_PORT || 3306, // 환경변수로 포트 지정, 기본값은 3306
-
+  ssl: {
+    // SSL 모드를 `require`로 설정
+    rejectUnauthorized: true,  // 인증서 검증 활성화
+  },
 });
 
 module.exports = pool;
