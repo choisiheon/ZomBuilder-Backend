@@ -1,7 +1,6 @@
 const Trait = require('../models/traitModel.js');
 
 
-
 const getAllTraits = async (req, res) => {
   try {
     const traits = await Trait.getAll();
@@ -93,6 +92,37 @@ const getTraitsFromMode = async (req, res) => {
   }
 };
 
+const getJobs = async (req, res) => {
+  try {
+    const { mode } = req.query;
 
-module.exports = { getAllTraits, getTraitsFromVanilla, getTraitsFromMode };
+
+    if (!mode) {
+      return res.status(400).json({
+        success: false,
+        message: "Mode parameter is required",
+      });
+    }
+
+    if (!mode) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid mode value. Use 'O' or 'X'.",
+      });
+    }
+
+    const jobs = await Trait.getJobs(mode);
+
+    res.json({ success: true, data: jobs });
+  } catch (error) {
+    console.error('Error fetching traits from vanilla:', error); // 로그에 에러 출력
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching jobs',
+      error: error.message || error, // 상세 오류 메시지 포함
+    });
+  }
+};
+
+module.exports = { getAllTraits, getTraitsFromVanilla, getTraitsFromMode, getJobs };
 
