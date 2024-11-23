@@ -18,6 +18,8 @@ const corsOptions = {
   credentials: true, // 쿠키 및 인증 정보를 허용하려면 true로 설정
 };
 
+app.use(cors(corsOptions)); // CORS 미들웨어 추가
+
 // 미들웨어 설정
 app.use(express.json());
 
