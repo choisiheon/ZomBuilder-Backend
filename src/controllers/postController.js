@@ -71,6 +71,28 @@ const getPostById = async (req, res) => {
   }
 };
 
+// 랜덤 게시글 가져오기 로직
+const getRandomPost = async (req, res) => {
+  try {
+    const post = await Post.getRandomPost();
+    if (!post) {
+      return res.status(404).json({
+        success: false,
+        message: 'No posts available.',
+      });
+    }
+
+    res.json({ success: true, data: post });
+  } catch (error) {
+    console.error('Error fetching random post:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching random post',
+      error: error.message,
+    });
+  }
+};
+
 //삭제로직
 const deletePost = async (req, res) => {
     try {
@@ -131,12 +153,6 @@ const deletePost = async (req, res) => {
         error: error.message,
       });
     }
-
-    
 };
 
-
-  
-  
-
-module.exports = { createPost, getAllPosts, getPostById, deletePost };
+module.exports = { createPost, getAllPosts, getPostById, getRandomPost, deletePost };

@@ -47,6 +47,21 @@ const Post = {
       }
   },
 
+  // 랜덤 게시글 조회
+  getRandomPost: async () => {
+    try {
+      const query = 'SELECT * FROM posts ORDER BY RAND() LIMIT 1';
+      const [rows] = await pool.query(query);
+      if (rows.length === 0) {
+        return null; // 게시글이 없으면 null 반환
+      }
+      return rows[0]; // 첫 번째 게시글 반환
+    } catch (error) {
+      console.error('Error fetching random post:', error);
+      throw error;
+    }
+  },
+
   // 게시글 삭제
   deletePost: async (id, password) => {
     try {
