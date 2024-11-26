@@ -32,23 +32,23 @@ const Post = {
     }
   },
 
-// 특정 게시글 조회 (id로)
-getPostById: async (id) => {
-    try {
-        const query = 'SELECT * FROM posts WHERE id = ?';
-        const [rows] = await pool.query(query, [id]);
-        if (rows.length === 0) {
-            return null;  // 게시글이 없으면 null 반환
-          }
-        return rows[0]; // 게시글이 존재하면 첫 번째 결과를 반환
-    } catch (error) {
-        console.error('Error fetching post by id:', error);
-        throw error;
-    }
-},
+  // 특정 게시글 조회 (id로)
+  getPostById: async (id) => {
+      try {
+          const query = 'SELECT * FROM posts WHERE id = ?';
+          const [rows] = await pool.query(query, [id]);
+          if (rows.length === 0) {
+              return null;  // 게시글이 없으면 null 반환
+            }
+          return rows[0]; // 게시글이 존재하면 첫 번째 결과를 반환
+      } catch (error) {
+          console.error('Error fetching post by id:', error);
+          throw error;
+      }
+  },
 
- // 게시글 삭제
-deletePost: async (id, password) => {
+  // 게시글 삭제
+  deletePost: async (id, password) => {
     try {
       // 게시글 조회
       const post = await Post.getPostById(id);

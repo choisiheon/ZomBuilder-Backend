@@ -40,6 +40,37 @@ const getAllPosts = async (req, res) => {
   }
 };
 
+// 특정 게시글 가져오기 로직
+const getPostById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: '게시글 ID를 입력하세요.',
+      });
+    }
+
+    const post = await Post.getPostById(id);
+    if (!post) {
+      return res.status(404).json({
+        success: false,
+        message: '게시글 없음.',
+      });
+    }
+
+    res.json({ success: true, data: post });
+  } catch (error) {
+    console.error('Error fetching post by id:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching post by id',
+      error: error.message,
+    });
+  }
+};
+
 //삭제로직
 const deletePost = async (req, res) => {
     try {
@@ -100,8 +131,12 @@ const deletePost = async (req, res) => {
         error: error.message,
       });
     }
+
+    
 };
+
+
   
   
 
-module.exports = { createPost, getAllPosts, deletePost };
+module.exports = { createPost, getAllPosts, getPostById, deletePost };

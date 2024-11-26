@@ -14,7 +14,5 @@ router.get('/mTraits', getTraitsFromMode);
 // 바닐라모드 직업을 불러오는 경로 설정
 router.get('/jobs', getJobs);
 
-
-
 module.exports = router;
 
