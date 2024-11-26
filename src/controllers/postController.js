@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');  // bcrypt 모듈 임포트
 //새 게시글 생성 로직
 const createPost = async (req, res) => {
   try {
-    const { job_id, trait_id, comment, password } = req.body;
+    const { job_id, trait_id, comment, password, mode } = req.body;
 
     if (!job_id || !trait_id || !comment || !password) {
       return res.status(400).json({
@@ -13,7 +13,7 @@ const createPost = async (req, res) => {
       });
     }
 
-    const result = await Post.createPost(job_id, trait_id, comment, password);
+    const result = await Post.createPost(job_id, trait_id, comment, password, mode);
     res.status(201).json({ success: true, message: 'Post created successfully', data: result });
   } catch (error) {
     console.error('Error creating post:', error);

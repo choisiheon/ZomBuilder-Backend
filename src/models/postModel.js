@@ -3,14 +3,14 @@ const bcrypt = require('bcrypt');
 
 const Post = {
   // 게시글 생성
-  createPost: async (job_id, trait_id, comment, password) => {
+  createPost: async (job_id, trait_id, comment, password, mode) => {
     try {
       const hashedPassword = await bcrypt.hash(password, 10); // 비밀번호 해싱
       const query = `
-        INSERT INTO posts (job_id, trait_id, comment, password, created_at)
-        VALUES (?, ?, ?, ?, NOW())
+        INSERT INTO posts (job_id, trait_id, comment, password, modecheck, created_at)
+        VALUES (?, ?, ?, ?, ?, NOW())
       `;
-      const [result] = await pool.query(query, [job_id, trait_id, comment, hashedPassword]);
+      const [result] = await pool.query(query, [job_id, trait_id, comment, hashedPassword, mode]);
       return result;
     } 
     catch (error) {
